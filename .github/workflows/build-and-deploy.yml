@@ -11,11 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy site
-        uses: appleboy/scp-action@v0.1.1
+        uses: milanmk/actions-file-deployer@master
         with:
-          host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: index.html,styles.css
-          target: ${{ secrets.TARGET }}
+          remote-protocol: 'sftp'
+          remote-host: ${{ secrets.HOST }}
+          remote-port: ${{ secrets.PORT }}
+          remote-user: ${{ secrets.USERNAME }}
+          ssh-private-key: ${{ secrets.KEY }}
+          sync: full
+          remote-path: /html/erch.co
